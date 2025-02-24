@@ -21,42 +21,38 @@ body {
   justify-content: center;
   align-items: center;
   background: #000;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
-  padding: 1rem;
+  justify-content: center;
+  gap: 4rem;
+  padding: 2rem;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
 }
 
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  width: 100%;
-  padding: 0 1rem;
+  gap: 1.5rem;
 }
 
 .title {
-  font-size: clamp(2rem, 8vw, 4.5rem);
+  font-size: min(4.5rem, 8vw);
   color: #ff0000;
   text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
   text-align: center;
   letter-spacing: 0.5rem;
-  width: 100%;
-  word-break: break-word;
 }
 
 .subtitle {
-  font-size: clamp(0.8rem, 4vw, 1.5rem);
+  font-size: min(1.5rem, 4vw);
   color: #ff6b6b;
   text-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
   letter-spacing: 0.3rem;
@@ -66,24 +62,26 @@ body {
 .round-display {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-top: 1rem;
 }
 
 .round-text {
-  font-size: clamp(1rem, 4vw, 1.5rem);
+  font-size: min(1.5rem, 4vw);
   color: #ffd700;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
   letter-spacing: 0.2rem;
+  min-width: 150px;
+  text-align: center;
 }
 
 .round-button {
-  font-size: clamp(0.8rem, 3vw, 1rem);
+  font-size: min(1rem, 3vw);
   padding: 0.5rem;
   color: #ffd700;
   background: rgba(255, 215, 0, 0.1);
   border: 1px solid rgba(255, 215, 0, 0.3);
-  min-width: auto;
+  min-width: 40px;
 }
 
 .fight-message {
@@ -126,22 +124,22 @@ body {
 
 .counter-container {
   display: flex;
-  gap: clamp(1rem, 4vw, 4rem);
-  padding: clamp(1rem, 4vw, 3rem);
-  flex-wrap: wrap;
+  gap: min(4rem, 4vw);
   justify-content: center;
+  align-items: flex-start;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1920px;
+  padding: 0 1rem;
 }
 
 .counter {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  position: relative;
-  width: min(100%, 400px);
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  min-width: 280px;
+  max-width: 500px;
 }
 
 .counter.winner .counter-display {
@@ -153,18 +151,17 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  width: 100%;
 }
 
 .dj-label {
-  font-size: clamp(0.8rem, 3vw, 1.2rem);
+  font-size: min(1.2rem, 3vw);
   color: #ff6b6b;
   text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
   letter-spacing: 0.2rem;
 }
 
 .character-name {
-  font-size: clamp(0.7rem, 2.5vw, 1rem);
+  font-size: min(1rem, 2.5vw);
   color: #ffd700;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
   letter-spacing: 0.1rem;
@@ -181,14 +178,11 @@ body {
 .name-edit-form {
   margin: 0;
   padding: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .name-input {
   font-family: 'Press Start 2P', system-ui;
-  font-size: clamp(0.7rem, 2.5vw, 1rem);
+  font-size: min(1rem, 2.5vw);
   color: #ffd700;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 215, 0, 0.3);
@@ -196,7 +190,7 @@ body {
   border-radius: 0.3rem;
   text-align: center;
   outline: none;
-  width: min(200px, 90%);
+  width: 200px;
 }
 
 .name-input:focus {
@@ -219,8 +213,8 @@ body {
 }
 
 .win-marker {
-  width: clamp(0.8rem, 2.5vw, 1rem);
-  height: clamp(0.8rem, 2.5vw, 1rem);
+  width: min(1rem, 2.5vw);
+  height: min(1rem, 2.5vw);
   background: rgba(255, 215, 0, 0.2);
   border: 2px solid rgba(255, 215, 0, 0.3);
   border-radius: 50%;
@@ -235,17 +229,17 @@ body {
 .counter-display {
   background: linear-gradient(145deg, #ff0000, #cc0000);
   color: white;
-  font-size: clamp(3rem, 10vw, 6rem);
-  padding: clamp(2rem, 6vw, 4rem);
+  font-size: min(6rem, 12vw);
+  padding: min(4rem, 8vw);
   border-radius: 1.5rem;
   width: 100%;
+  aspect-ratio: 16/9;
   text-align: center;
   box-shadow:
     0 0 40px rgba(255, 0, 0, 0.6),
     inset 0 0 20px rgba(0, 0, 0, 0.3);
   border: 2px solid rgba(255, 255, 255, 0.1);
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  aspect-ratio: 16/9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -254,12 +248,9 @@ body {
 .counter-buttons,
 .win-buttons {
   display: flex;
-  gap: 0.5rem;
-  opacity: 1;
+  gap: 1rem;
+  opacity: 0.2;
   transition: opacity 0.3s;
-  position: relative;
-  width: 100%;
-  justify-content: center;
 }
 
 .counter:hover .counter-buttons,
@@ -270,15 +261,15 @@ body {
 
 button {
   font-family: 'Press Start 2P', system-ui;
-  padding: clamp(0.3rem, 2vw, 0.5rem);
-  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  padding: 0.8rem;
+  font-size: min(1rem, 2.5vw);
   background-color: rgba(255, 0, 0, 0.2);
   color: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(255, 0, 0, 0.3);
   border-radius: 0.3rem;
   cursor: pointer;
   transition: all 0.2s;
-  min-width: clamp(30px, 10vw, 40px);
+  min-width: 50px;
   backdrop-filter: blur(5px);
   touch-action: manipulation;
 }
@@ -290,12 +281,11 @@ button {
 }
 
 button.reset-button {
-  font-size: clamp(0.6rem, 2vw, 0.7rem);
-  padding: clamp(0.3rem, 2vw, 0.5rem);
+  font-size: min(0.7rem, 2vw);
+  padding: 0.5rem;
   margin-top: 0.5rem;
-  opacity: 1;
+  opacity: 0.2;
   background-color: rgba(255, 0, 0, 0.2);
-  position: relative;
 }
 
 button:hover {
@@ -373,68 +363,47 @@ button:active {
   }
 }
 
-/* Tablet Adjustments */
-@media (min-width: 768px) and (max-width: 1024px) {
+/* Large Screen Optimizations */
+@media (min-width: 1920px) {
+  .counter-container {
+    gap: 6rem;
+  }
+
+  .counter {
+    min-width: 400px;
+  }
+
+  .counter-display {
+    font-size: 8rem;
+  }
+}
+
+/* Maintain Horizontal Layout */
+@media (max-width: 1024px) {
+  .app {
+    gap: 2rem;
+  }
+
   .counter-container {
     gap: 2rem;
   }
 
   .counter {
-    width: calc(50% - 2rem);
+    min-width: 250px;
   }
 }
 
-/* Mobile Adjustments */
-@media (max-width: 767px) {
-  .app {
-    padding: 0.5rem;
-  }
-
-  .counter-container {
-    padding: 1rem;
-    gap: 2rem;
-  }
-
-  .counter {
-    width: 100%;
-    margin-bottom: 1.5rem;
-  }
-
-  .counter-display {
-    min-height: 150px;
-  }
-
-  .counter-buttons,
-  .win-buttons {
-    gap: 1rem;
-  }
-
-  button {
-    padding: 0.8rem;
-    min-width: 50px;
-  }
-}
-
-/* Landscape Mode */
-@media (max-height: 600px) and (orientation: landscape) {
-  .app {
-    padding: 0.5rem;
-  }
-
-  .header {
-    margin-bottom: 0.5rem;
-  }
-
+/* Ensure Minimum Sizes */
+@media (max-width: 768px) {
   .counter-container {
     gap: 1rem;
   }
 
   .counter {
-    margin-bottom: 1rem;
+    min-width: 200px;
   }
 
   .counter-display {
-    min-height: 100px;
-    padding: 1rem;
+    padding: 2rem;
   }
 }
