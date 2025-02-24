@@ -85,9 +85,9 @@ function Counter({ label, character, onNameChange }: CounterProps) {
 function App() {
   const [round, setRound] = useState(1)
   const [players, setPlayers] = useState([
-    { id: 1, label: "PLAYER 1", name: "YOSHIMITSU" },
-    { id: 2, label: "PLAYER 2", name: "KAZUYA" },
-    { id: 3, label: "PLAYER 3", name: "KING" }
+    { id: 1, label: "PLAYER 1", name: "DANI." },
+    { id: 2, label: "PLAYER 2", name: "SONSHINE" },
+    { id: 3, label: "PLAYER 3", name: "MATOKI" }
   ])
 
   const nextRound = () => setRound(round + 1)

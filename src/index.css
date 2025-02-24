@@ -16,10 +16,12 @@
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #000;
+  overflow-x: hidden;
 }
 
 .app {
@@ -27,10 +29,10 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  padding: 2rem;
+  padding: 1rem;
   width: 100%;
-  position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .header {
@@ -38,23 +40,27 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .title {
-  font-size: 4.5rem;
+  font-size: clamp(2rem, 8vw, 4.5rem);
   color: #ff0000;
   text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
   text-align: center;
   letter-spacing: 0.5rem;
+  width: 100%;
+  word-break: break-word;
 }
 
 .subtitle {
-  font-size: 1.5rem;
+  font-size: clamp(0.8rem, 4vw, 1.5rem);
   color: #ff6b6b;
   text-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
   letter-spacing: 0.3rem;
-  margin-top: -1rem;
+  margin-top: -0.5rem;
 }
 
 .round-display {
@@ -65,14 +71,14 @@ body {
 }
 
 .round-text {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 4vw, 1.5rem);
   color: #ffd700;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
   letter-spacing: 0.2rem;
 }
 
 .round-button {
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 3vw, 1rem);
   padding: 0.5rem;
   color: #ffd700;
   background: rgba(255, 215, 0, 0.1);
@@ -120,8 +126,8 @@ body {
 
 .counter-container {
   display: flex;
-  gap: 4rem;
-  padding: 3rem;
+  gap: clamp(1rem, 4vw, 4rem);
+  padding: clamp(1rem, 4vw, 3rem);
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
@@ -134,6 +140,8 @@ body {
   align-items: center;
   gap: 1rem;
   position: relative;
+  width: min(100%, 400px);
+  margin-bottom: 2rem;
 }
 
 .counter.winner .counter-display {
@@ -145,17 +153,18 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  width: 100%;
 }
 
 .dj-label {
-  font-size: 1.2rem;
+  font-size: clamp(0.8rem, 3vw, 1.2rem);
   color: #ff6b6b;
   text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
   letter-spacing: 0.2rem;
 }
 
 .character-name {
-  font-size: 1rem;
+  font-size: clamp(0.7rem, 2.5vw, 1rem);
   color: #ffd700;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
   letter-spacing: 0.1rem;
@@ -172,11 +181,14 @@ body {
 .name-edit-form {
   margin: 0;
   padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .name-input {
   font-family: 'Press Start 2P', system-ui;
-  font-size: 1rem;
+  font-size: clamp(0.7rem, 2.5vw, 1rem);
   color: #ffd700;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 215, 0, 0.3);
@@ -184,7 +196,7 @@ body {
   border-radius: 0.3rem;
   text-align: center;
   outline: none;
-  width: 200px;
+  width: min(200px, 90%);
 }
 
 .name-input:focus {
@@ -197,6 +209,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  width: 100%;
 }
 
 .win-markers {
@@ -206,8 +219,8 @@ body {
 }
 
 .win-marker {
-  width: 1rem;
-  height: 1rem;
+  width: clamp(0.8rem, 2.5vw, 1rem);
+  height: clamp(0.8rem, 2.5vw, 1rem);
   background: rgba(255, 215, 0, 0.2);
   border: 2px solid rgba(255, 215, 0, 0.3);
   border-radius: 50%;
@@ -222,34 +235,31 @@ body {
 .counter-display {
   background: linear-gradient(145deg, #ff0000, #cc0000);
   color: white;
-  font-size: 6rem;
-  padding: 4rem;
+  font-size: clamp(3rem, 10vw, 6rem);
+  padding: clamp(2rem, 6vw, 4rem);
   border-radius: 1.5rem;
-  min-width: 350px;
+  width: 100%;
   text-align: center;
   box-shadow:
     0 0 40px rgba(255, 0, 0, 0.6),
     inset 0 0 20px rgba(0, 0, 0, 0.3);
   border: 2px solid rgba(255, 255, 255, 0.1);
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-.counter-buttons {
+  aspect-ratio: 16/9;
   display: flex;
-  gap: 0.5rem;
-  opacity: 0.2;
-  transition: opacity 0.3s;
-  position: absolute;
-  bottom: -40px;
+  align-items: center;
+  justify-content: center;
 }
 
+.counter-buttons,
 .win-buttons {
   display: flex;
   gap: 0.5rem;
-  opacity: 0.2;
+  opacity: 1;
   transition: opacity 0.3s;
-  position: absolute;
-  bottom: -100px;
+  position: relative;
+  width: 100%;
+  justify-content: center;
 }
 
 .counter:hover .counter-buttons,
@@ -260,16 +270,17 @@ body {
 
 button {
   font-family: 'Press Start 2P', system-ui;
-  padding: 0.5rem;
-  font-size: 1rem;
+  padding: clamp(0.3rem, 2vw, 0.5rem);
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
   background-color: rgba(255, 0, 0, 0.2);
   color: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(255, 0, 0, 0.3);
   border-radius: 0.3rem;
   cursor: pointer;
   transition: all 0.2s;
-  min-width: 40px;
+  min-width: clamp(30px, 10vw, 40px);
   backdrop-filter: blur(5px);
+  touch-action: manipulation;
 }
 
 .win-button {
@@ -279,13 +290,12 @@ button {
 }
 
 button.reset-button {
-  font-size: 0.7rem;
-  padding: 0.5rem;
+  font-size: clamp(0.6rem, 2vw, 0.7rem);
+  padding: clamp(0.3rem, 2vw, 0.5rem);
   margin-top: 0.5rem;
-  opacity: 0.2;
+  opacity: 1;
   background-color: rgba(255, 0, 0, 0.2);
-  position: absolute;
-  bottom: -130px;
+  position: relative;
 }
 
 button:hover {
@@ -363,73 +373,68 @@ button:active {
   }
 }
 
-@media (max-width: 768px) {
-  .title {
-    font-size: 2.5rem;
-    letter-spacing: 0.3rem;
+/* Tablet Adjustments */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .counter-container {
+    gap: 2rem;
   }
 
-  .subtitle {
-    font-size: 1rem;
-    margin-top: 0;
+  .counter {
+    width: calc(50% - 2rem);
+  }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 767px) {
+  .app {
+    padding: 0.5rem;
   }
 
-  .round-text {
-    font-size: 1.2rem;
+  .counter-container {
+    padding: 1rem;
+    gap: 2rem;
   }
 
-  .fight-message {
-    font-size: 3rem;
-  }
-
-  .victory-message {
-    font-size: 1.5rem;
-    top: -2rem;
-  }
-
-  .announcer-message {
-    font-size: 1.5rem;
-    bottom: 1rem;
-  }
-
-  .dj-label {
-    font-size: 1rem;
-  }
-
-  .character-name {
-    font-size: 0.8rem;
-  }
-
-  .name-input {
-    font-size: 0.8rem;
-    width: 150px;
+  .counter {
+    width: 100%;
+    margin-bottom: 1.5rem;
   }
 
   .counter-display {
-    font-size: 5rem;
-    padding: 3rem;
-    min-width: 300px;
+    min-height: 150px;
   }
 
   .counter-buttons,
   .win-buttons {
-    opacity: 1;
-    position: relative;
-    bottom: 0;
-  }
-
-  button.reset-button {
-    position: relative;
-    bottom: 0;
+    gap: 1rem;
   }
 
   button {
     padding: 0.8rem;
-    font-size: 1.2rem;
+    min-width: 50px;
+  }
+}
+
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
+  .app {
+    padding: 0.5rem;
   }
 
-  .win-marker {
-    width: 0.8rem;
-    height: 0.8rem;
+  .header {
+    margin-bottom: 0.5rem;
+  }
+
+  .counter-container {
+    gap: 1rem;
+  }
+
+  .counter {
+    margin-bottom: 1rem;
+  }
+
+  .counter-display {
+    min-height: 100px;
+    padding: 1rem;
   }
 }
