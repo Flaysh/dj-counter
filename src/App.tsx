@@ -23,10 +23,13 @@ function Counter() {
 
 function App() {
   return (
-    <div className="counter-container">
-      <Counter />
-      <Counter />
-      <Counter />
+    <div className="app">
+      <h1 className="title">DJ TEKKEN</h1>
+      <div className="counter-container">
+        <Counter />
+        <Counter />
+        <Counter />
+      </div>
     </div>
   )
 }
