@@ -19,22 +19,103 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #000;
 }
 
 .app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
   padding: 2rem;
+  width: 100%;
+  position: relative;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .title {
-  font-size: 4rem;
+  font-size: 4.5rem;
   color: #ff0000;
   text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
   text-align: center;
   letter-spacing: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #ff6b6b;
+  text-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
+  letter-spacing: 0.3rem;
+  margin-top: -1rem;
+}
+
+.round-display {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.round-text {
+  font-size: 1.5rem;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+  letter-spacing: 0.2rem;
+}
+
+.round-button {
+  font-size: 1rem;
+  padding: 0.5rem;
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  min-width: auto;
+}
+
+.fight-message {
+  font-size: 5rem;
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+  letter-spacing: 0.5rem;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 100;
+  pointer-events: none;
+  animation: fightAnimation 2s ease-out forwards;
+}
+
+.announcer-message {
+  font-size: 2rem;
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+  letter-spacing: 0.3rem;
+  position: absolute;
+  bottom: 2rem;
+  opacity: 0.7;
+  animation: fadeInOut 4s ease-in-out infinite;
+}
+
+.victory-message {
+  font-size: 2rem;
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+  letter-spacing: 0.3rem;
+  position: absolute;
+  top: -3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: victoryAnimation 3s ease-out forwards;
+  z-index: 10;
 }
 
 .counter-container {
@@ -43,34 +124,136 @@ body {
   padding: 3rem;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
+  max-width: 1400px;
 }
 
 .counter {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.counter.winner .counter-display {
+  animation: winnerPulse 1s ease-in-out infinite;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
 }
 
+.dj-label {
+  font-size: 1.2rem;
+  color: #ff6b6b;
+  text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+  letter-spacing: 0.2rem;
+}
+
+.character-name {
+  font-size: 1rem;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.3rem;
+  transition: background-color 0.2s;
+}
+
+.character-name:hover {
+  background: rgba(255, 215, 0, 0.1);
+}
+
+.name-edit-form {
+  margin: 0;
+  padding: 0;
+}
+
+.name-input {
+  font-family: 'Press Start 2P', system-ui;
+  font-size: 1rem;
+  color: #ffd700;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.3rem;
+  text-align: center;
+  outline: none;
+  width: 200px;
+}
+
+.name-input:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.battle-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.win-markers {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: -0.5rem;
+}
+
+.win-marker {
+  width: 1rem;
+  height: 1rem;
+  background: rgba(255, 215, 0, 0.2);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.win-marker.won {
+  background: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
 .counter-display {
-  background-color: #ff0000;
+  background: linear-gradient(145deg, #ff0000, #cc0000);
   color: white;
   font-size: 6rem;
   padding: 4rem;
   border-radius: 1.5rem;
   min-width: 350px;
   text-align: center;
-  box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+  box-shadow:
+    0 0 40px rgba(255, 0, 0, 0.6),
+    inset 0 0 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .counter-buttons {
   display: flex;
   gap: 0.5rem;
-  opacity: 0.3;
+  opacity: 0.2;
   transition: opacity 0.3s;
+  position: absolute;
+  bottom: -40px;
+}
+
+.win-buttons {
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0.2;
+  transition: opacity 0.3s;
+  position: absolute;
+  bottom: -100px;
 }
 
 .counter:hover .counter-buttons,
+.counter:hover .win-buttons,
 .counter:hover .reset-button {
   opacity: 1;
 }
@@ -79,7 +262,7 @@ button {
   font-family: 'Press Start 2P', system-ui;
   padding: 0.5rem;
   font-size: 1rem;
-  background-color: rgba(255, 0, 0, 0.3);
+  background-color: rgba(255, 0, 0, 0.2);
   color: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(255, 0, 0, 0.3);
   border-radius: 0.3rem;
@@ -89,21 +272,95 @@ button {
   backdrop-filter: blur(5px);
 }
 
+.win-button {
+  background-color: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.3);
+  color: rgba(255, 215, 0, 0.7);
+}
+
 button.reset-button {
   font-size: 0.7rem;
   padding: 0.5rem;
   margin-top: 0.5rem;
-  opacity: 0.3;
+  opacity: 0.2;
   background-color: rgba(255, 0, 0, 0.2);
+  position: absolute;
+  bottom: -130px;
 }
 
 button:hover {
   transform: scale(1.1);
   background-color: rgba(255, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.win-button:hover {
+  background-color: rgba(255, 215, 0, 0.5);
 }
 
 button:active {
   transform: scale(0.9);
+}
+
+@keyframes fightAnimation {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes victoryAnimation {
+  0% {
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translateX(-50%) scale(1.2);
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes winnerPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 60px rgba(255, 0, 0, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.3;
+  }
 }
 
 @media (max-width: 768px) {
@@ -112,18 +369,67 @@ button:active {
     letter-spacing: 0.3rem;
   }
 
+  .subtitle {
+    font-size: 1rem;
+    margin-top: 0;
+  }
+
+  .round-text {
+    font-size: 1.2rem;
+  }
+
+  .fight-message {
+    font-size: 3rem;
+  }
+
+  .victory-message {
+    font-size: 1.5rem;
+    top: -2rem;
+  }
+
+  .announcer-message {
+    font-size: 1.5rem;
+    bottom: 1rem;
+  }
+
+  .dj-label {
+    font-size: 1rem;
+  }
+
+  .character-name {
+    font-size: 0.8rem;
+  }
+
+  .name-input {
+    font-size: 0.8rem;
+    width: 150px;
+  }
+
   .counter-display {
     font-size: 5rem;
     padding: 3rem;
     min-width: 300px;
   }
 
-  .counter-buttons {
+  .counter-buttons,
+  .win-buttons {
     opacity: 1;
+    position: relative;
+    bottom: 0;
+  }
+
+  button.reset-button {
+    position: relative;
+    bottom: 0;
   }
 
   button {
     padding: 0.8rem;
     font-size: 1.2rem;
+  }
+
+  .win-marker {
+    width: 0.8rem;
+    height: 0.8rem;
   }
 }

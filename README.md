@@ -1,50 +1,90 @@
-# React + TypeScript + Vite
+# 🎵 DJ TEKKEN Score Battle Counter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A professional score counter application designed specifically for DJ battles in TEKKEN theme. Built with React and styled with a retro gaming aesthetic inspired by the TEKKEN fighting game series.
 
-Currently, two official plugins are available:
+![DJ TEKKEN Score Counter](preview.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎮 Features
 
-## Expanding the ESLint configuration
+- **Three Player Support**: Keep track of scores for up to three DJs simultaneously
+- **TEKKEN-Inspired Design**: Featuring the iconic red and black color scheme
+- **High Visibility**: Large, clear score displays perfect for live events
+- **Subtle Controls**: Hidden controls that appear on hover to maintain focus on the scores
+- **Responsive Design**: Works on all screen sizes, from mobile to large displays
+- **PWA Support**: Can be installed as a standalone app
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🎯 Usage
 
-- Configure the top-level `parserOptions` property like this:
+The counter is designed for DJ battle events where judges need to keep track of scores. Each player has:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- A large score display
+- Increment (+) and decrement (-) buttons (hover to reveal)
+- A reset button for new rounds
+- Player labels for clear identification
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 💫 Controls
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **Score Adjustment**: Hover over a counter to reveal + and - buttons
+- **Reset**: Each counter has its own reset button (appears on hover)
+- **Mobile**: Controls are always visible on mobile devices for easier access
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 🚀 Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/dj-tekken-counter.git
+   ```
+
+2. Install dependencies:
+   ```bash
+   cd dj-tekken-counter
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## 🎨 Customization
+
+The app uses CSS variables for easy customization. Main styling can be found in `src/index.css`.
+
+Key customizable elements:
+- Color scheme
+- Font sizes
+- Counter sizes
+- Spacing and layout
+- Animation timings
+
+## 📱 Mobile Support
+
+The application is fully responsive and includes:
+- Optimized layout for smaller screens
+- Always-visible controls on mobile
+- Touch-friendly button sizes
+- Adjusted font sizes for readability
+
+## 🛠 Technical Details
+
+- Built with React + TypeScript
+- Uses Vite for blazing fast development
+- CSS3 with modern features (gradients, shadows, transitions)
+- PWA-ready with service worker support
+
+## 📄 License
+
+MIT License - feel free to use for your DJ events!
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+Made with ❤️ for the DJ Battle Community
