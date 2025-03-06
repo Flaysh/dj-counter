@@ -263,7 +263,7 @@ function App() {
   const [selectedPlayerId, setSelectedPlayerId] = useState(1)
   const [currentPlayerId, setCurrentPlayerId] = useState(1)
   const [isFullscreen, setIsFullscreen] = useState(false)
-  const [showInstructions, setShowInstructions] = useState(true)
+  const [showInstructions, setShowInstructions] = useState(false)
   const appRef = useRef<HTMLDivElement>(null);
   // Track if an Enter key action is being processed
   const isProcessingKeyRef = useRef(false);
