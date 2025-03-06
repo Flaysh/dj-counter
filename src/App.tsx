@@ -17,13 +17,22 @@ function Counter({ label, character, onNameChange, isSelected, isCurrentPlayer, 
   const [showScoreEffect, setShowScoreEffect] = useState(false)
   const displayRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
+  const isIncrementingRef = useRef(false)
 
   const increment = () => {
+    // Prevent duplicate increments
+    if (isIncrementingRef.current) return;
+    
+    isIncrementingRef.current = true;
+    
     setCount(count + 1)
     onIncrement()
     // Show score effect
     setShowScoreEffect(true)
-    setTimeout(() => setShowScoreEffect(false), 500)
+    setTimeout(() => {
+      setShowScoreEffect(false)
+      isIncrementingRef.current = false;
+    }, 500)
     
     // Add confetti effect
     if (displayRef.current) {
@@ -86,7 +95,7 @@ function Counter({ label, character, onNameChange, isSelected, isCurrentPlayer, 
       </div>
       <div className="battle-display">
         <div className={`counter-display ${showScoreEffect ? 'score-added' : ''}`} ref={displayRef}>
-          {count}
+          <span className="score-value">{count}</span>
           {showScoreEffect && <div className="score-effect">+1</div>}
         </div>
       </div>
@@ -256,6 +265,8 @@ function App() {
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [showInstructions, setShowInstructions] = useState(true)
   const appRef = useRef<HTMLDivElement>(null);
+  // Track if an Enter key action is being processed
+  const isProcessingKeyRef = useRef(false);
 
   const handleNameChange = (id: number, newName: string) => {
     setPlayers(players.map(player =>
@@ -321,16 +332,31 @@ function App() {
   // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Prevent duplicate events
+      if (isProcessingKeyRef.current) return;
+
       if (e.key === 'ArrowRight') {
+        isProcessingKeyRef.current = true;
         selectNextPlayer();
+        setTimeout(() => { isProcessingKeyRef.current = false; }, 100);
       } else if (e.key === 'ArrowLeft') {
+        isProcessingKeyRef.current = true;
         selectPrevPlayer();
+        setTimeout(() => { isProcessingKeyRef.current = false; }, 100);
       } else if (e.key === 'Enter') {
+        // Prevent repeat events
+        if (isProcessingKeyRef.current) return;
+        isProcessingKeyRef.current = true;
+        
         // Find the counter component for the selected player and trigger its increment
         const incrementButton = document.querySelector(`.counter.selected .counter-buttons button:nth-child(2)`);
         if (incrementButton instanceof HTMLButtonElement) {
           incrementButton.click();
         }
+        
+        // Reset the processing flag after a short delay
+        setTimeout(() => { isProcessingKeyRef.current = false; }, 300);
+        e.preventDefault(); // Prevent default action
       } else if (e.key === ' ') {
         // Space key toggles current player
         setCurrentPlayer(selectedPlayerId);
@@ -376,7 +402,7 @@ function App() {
   // Current event info
   const EventInfo = () => (
     <div className={`event-info ${isFullscreen ? 'fullscreen-mode' : ''}`}>
-      <div className="event-title">DJ CONTEST 2023</div>
+      <div className="event-title">DJ BATTLE PARTY</div>
       <div className="current-dj">
         NOW PLAYING: <span className="dj-name">{players.find(p => p.id === currentPlayerId)?.name || 'NONE'}</span>
       </div>
@@ -398,8 +424,12 @@ function App() {
       <Visualizer isActive={isFullscreen} />
       <Turntable isVisible={isFullscreen} />
       
+      {/* Keyboard instructions - placed here so they appear at the top level */}
+      <Instructions />
+      {!showInstructions && <HelpToggle />}
+      
       <div className="header">
-        <h1 className="title">DJ TEKKEN</h1>
+        <h1 className="title">TEKKEN 23</h1>
         <div className="subtitle">SCORE BATTLE</div>
         <button className="fullscreen-button" onClick={toggleFullscreen}>
           {isFullscreen ? 'EXIT FULLSCREEN' : 'FULLSCREEN MODE'}
@@ -422,8 +452,6 @@ function App() {
       <div className="bottom-info">
         <EventInfo />
       </div>
-      <Instructions />
-      {!showInstructions && <HelpToggle />}
     </div>
   )
 }
